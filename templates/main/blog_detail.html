@@ -1,88 +1,541 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block title %}{{ blog.title }} - Khushi Deshmukh{% endblock %}
+{% block title %}{{ blog.title }} - {{ blog.author }}{% endblock %}
 
 {% block content %}
-<article class="blog-article">
-    <!-- Blog Header -->
-    <header class="blog-header">
-        <div class="blog-meta">
-            <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">
-                {{ blog.created_at|date:"F d, Y" }}
-            </span>
-            <span style="color: var(--gray-text);">/</span>
-            <span style="color: var(--gray-text);">By {{ blog.author }}</span>
-        </div>
-        <h1>{{ blog.title }}</h1>
-        
+<!-- Parallax Background Elements -->
+<div class="parallax-bg">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+</div>
+
+<article class="blog-article-modern">
+    <!-- Hero Section with 3D Effect -->
+    <div class="blog-hero">
         {% if blog.image %}
-            <div style="width: 100%; height: auto; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
-                <img src="{{ blog.image.url }}" alt="{{ blog.title }}" 
-                     style="width: 100%; height: auto; display: block;">
+        <div class="blog-featured-image">
+            <div class="image-wrapper">
+                <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="parallax-image">
+                <div class="image-overlay"></div>
             </div>
+        </div>
         {% endif %}
-    </header>
-    
-    <!-- Blog Content -->
-    <div class="blog-body">
-        {{ blog.content|linebreaks }}
-    </div>
-    
-    <!-- Share Section -->
-    <div style="margin-top: 6rem; padding-top: 3rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-        <h3 style="margin-bottom: 2rem; font-size: 1.5rem;">Share this post</h3>
-        <div style="display: flex; gap: 1rem;">
-            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ blog.title }}" 
-               target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1.5rem;">
-                Twitter
-            </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" 
-               target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1.5rem;">
-                LinkedIn
-            </a>
+        
+        <div class="blog-header-content">
+            <div class="blog-meta-modern">
+                <span class="meta-badge">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 1V7L11 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    {{ blog.created_at|date:"F d, Y" }}
+                </span>
+                <span class="meta-separator">•</span>
+                <span class="meta-author">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="7" cy="4.5" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M2 12.5C2 10.015 4.015 8 6.5 8H7.5C9.985 8 12 10.015 12 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    {{ blog.author }}
+                </span>
+            </div>
+            <h1 class="blog-title-modern">{{ blog.title }}</h1>
         </div>
     </div>
     
-    <!-- Back to Blog -->
-    <div style="margin-top: 4rem; text-align: center;">
-        <a href="{% url 'blog_list' %}" class="btn btn-primary">
-            Back to Blog
-        </a>
+    <!-- Blog Content with Enhanced Typography -->
+    <div class="blog-content-wrapper">
+        <div class="blog-body-modern">
+            {{ blog.content|linebreaks }}
+        </div>
+        
+        <!-- Interactive Share Section -->
+        <div class="share-section-modern">
+            <h3 class="share-title">
+                <span class="share-icon">🚀</span>
+                Share this article
+            </h3>
+            <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ blog.title }}" 
+                   target="_blank" class="share-btn twitter-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                    </svg>
+                    <span>Twitter</span>
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" 
+                   target="_blank" class="share-btn linkedin-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" 
+                   target="_blank" class="share-btn facebook-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                    </svg>
+                    <span>Facebook</span>
+                </a>
+                <button class="share-btn copy-btn" onclick="copyToClipboard()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke-width="2"/>
+                        <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke-width="2"/>
+                    </svg>
+                    <span class="copy-text">Copy Link</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Back Button with 3D Effect -->
+        <div class="back-section">
+            <a href="{% url 'blog_list' %}" class="back-btn-modern">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                <span>Back to All Articles</span>
+            </a>
+        </div>
     </div>
 </article>
 
 <style>
-    .blog-body p {
-        margin-bottom: 2rem;
-        color: #cccccc;
+    /* Parallax Background */
+    .parallax-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
     }
     
-    .blog-body h2, .blog-body h3 {
-        color: var(--text-color);
+    .gradient-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.15;
+        animation: float 20s ease-in-out infinite;
+    }
+    
+    .orb-1 {
+        width: 500px;
+        height: 500px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        top: -10%;
+        right: -10%;
+        animation-delay: 0s;
+    }
+    
+    .orb-2 {
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        bottom: -10%;
+        left: -10%;
+        animation-delay: -7s;
+    }
+    
+    .orb-3 {
+        width: 350px;
+        height: 350px;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation-delay: -14s;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(50px, -50px) scale(1.1); }
+        66% { transform: translate(-30px, 30px) scale(0.9); }
+    }
+    
+    /* Modern Article Container */
+    .blog-article-modern {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        position: relative;
+    }
+    
+    /* Hero Section */
+    .blog-hero {
+        margin-bottom: 4rem;
+    }
+    
+    .blog-featured-image {
+        width: 100%;
+        margin-bottom: 3rem;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    }
+    
+    .parallax-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .image-wrapper:hover .parallax-image {
+        transform: scale(1.05);
+    }
+    
+    .image-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(to top, rgba(10, 10, 15, 0.8) 0%, transparent 100%);
+        pointer-events: none;
+    }
+    
+    /* Header Content */
+    .blog-header-content {
+        text-align: center;
+        padding: 0 1rem;
+    }
+    
+    .blog-meta-modern {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(102, 126, 234, 0.15);
+        border: 1px solid rgba(102, 126, 234, 0.3);
+        border-radius: 50px;
+        font-weight: 500;
+        color: #667eea;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+    
+    .meta-badge:hover {
+        background: rgba(102, 126, 234, 0.25);
+        transform: translateY(-2px);
+    }
+    
+    .meta-author {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .meta-separator {
+        color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .blog-title-modern {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        line-height: 1.2;
+        margin: 0;
+        background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: titleFadeIn 1s ease;
+    }
+    
+    @keyframes titleFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Content Wrapper */
+    .blog-content-wrapper {
+        background: rgba(20, 20, 30, 0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 3rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    @media (max-width: 768px) {
+        .blog-content-wrapper {
+            padding: 1.5rem;
+        }
+    }
+    
+    /* Enhanced Blog Content */
+    .blog-body-modern {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.85);
+    }
+    
+    .blog-body-modern p {
+        margin-bottom: 1.5rem;
+        text-align: justify;
+    }
+    
+    .blog-body-modern h2,
+    .blog-body-modern h3 {
+        color: #ffffff;
+        font-weight: 700;
         margin-top: 3rem;
         margin-bottom: 1.5rem;
+        position: relative;
+        padding-left: 1.5rem;
     }
     
-    .blog-body ul, .blog-body ol {
+    .blog-body-modern h2::before,
+    .blog-body-modern h3::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.5rem;
+        width: 4px;
+        height: calc(100% - 1rem);
+        background: linear-gradient(to bottom, #667eea, #764ba2);
+        border-radius: 2px;
+    }
+    
+    .blog-body-modern h2 {
+        font-size: 2rem;
+    }
+    
+    .blog-body-modern h3 {
+        font-size: 1.5rem;
+    }
+    
+    .blog-body-modern ul,
+    .blog-body-modern ol {
         margin-bottom: 2rem;
         padding-left: 2rem;
-        color: #cccccc;
     }
     
-    .blog-body li {
-        margin-bottom: 0.5rem;
+    .blog-body-modern li {
+        margin-bottom: 0.75rem;
+        line-height: 1.8;
     }
     
-    .blog-body a {
-        color: var(--accent-color);
+    .blog-body-modern a {
+        color: #667eea;
         text-decoration: none;
-        border-bottom: 1px solid var(--accent-color);
+        border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+        transition: all 0.3s ease;
     }
     
-    .blog-body a:hover {
-        background: var(--accent-color);
-        color: var(--bg-color);
+    .blog-body-modern a:hover {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #ffffff;
+        border-bottom-color: transparent;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+    }
+    
+    /* Share Section */
+    .share-section-modern {
+        margin-top: 4rem;
+        padding-top: 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .share-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: #ffffff;
+    }
+    
+    .share-icon {
+        font-size: 1.75rem;
+        animation: bounce 2s ease-in-out infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+    
+    .share-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .share-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.875rem 1.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .share-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .share-btn:hover::before {
+        opacity: 1;
+    }
+    
+    .share-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .twitter-btn:hover {
+        background: linear-gradient(135deg, #1DA1F2 0%, #0d8bd9 100%);
+        border-color: #1DA1F2;
+    }
+    
+    .linkedin-btn:hover {
+        background: linear-gradient(135deg, #0077B5 0%, #005885 100%);
+        border-color: #0077B5;
+    }
+    
+    .facebook-btn:hover {
+        background: linear-gradient(135deg, #1877F2 0%, #0e5fc2 100%);
+        border-color: #1877F2;
+    }
+    
+    .copy-btn:hover {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-color: #667eea;
+    }
+    
+    /* Back Section */
+    .back-section {
+        margin-top: 4rem;
+        text-align: center;
+    }
+    
+    .back-btn-modern {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px -5px rgba(102, 126, 234, 0.4);
+    }
+    
+    .back-btn-modern:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px -5px rgba(102, 126, 234, 0.6);
+    }
+    
+    .back-btn-modern svg {
+        transition: transform 0.3s ease;
+    }
+    
+    .back-btn-modern:hover svg {
+        transform: translateX(-5px);
+    }
+    
+    /* Fade-in animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 </style>
+
+<script>
+    // Copy link functionality
+    function copyToClipboard() {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            const btn = document.querySelector('.copy-btn .copy-text');
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        });
+    }
+    
+    // Parallax effect on scroll
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxImage = document.querySelector('.parallax-image');
+        if (parallaxImage) {
+            parallaxImage.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+    });
+    
+    // Smooth fade-in animation on load
+    document.addEventListener('DOMContentLoaded', () => {
+        const elements = document.querySelectorAll('.blog-body-modern p, .blog-body-modern h2, .blog-body-modern h3');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeInUp 0.6s ease ${index * 0.1}s forwards`;
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        elements.forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    });
+</script>
 {% endblock %}
