@@ -11,25 +11,21 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio.settings')
 django.setup()
 
 from main.models import Blog
-
-def download_image(url):
-    try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            return BytesIO(response.content)
-    except Exception as e:
-        print(f"Error downloading image: {e}")
-    return None
+from django.conf import settings
 
 def populate_db():
     print("Starting database population...")
+    
+    # Define base path for static blog assets
+    # On PythonAnywhere, this will be in the repo folder
+    base_dir = settings.BASE_DIR
+    assets_dir = base_dir / 'portfolio' / 'static' / 'blog_assets'
     
     blogs = [
         {
             'title': 'Brand Visibility at F1 Circuit Tracks: A Deep Dive into the Art of Strategic Placement',
             'author': 'Khushi Deshmukh',
-            # Updated to a confirmed F1 car image (Red Bull)
-            'image_url': 'https://images.unsplash.com/photo-1504215680905-41918a92a997?q=80&w=2000&auto=format&fit=crop', # F1 Car on Track
+            'image_filename': 'f1_brand_visibility.png',
             'content': """Formula 1 (F1) racing is a spectacle of speed, skill, and strategy, but beneath the tire-burning action lies a powerful marketing engine that brands harness to reach millions of viewers across the globe. The branding at F1 circuit tracks is not just about slapping logos on barriers and cars; it's a meticulously crafted strategy to maximize brand visibility. One of the most dynamic elements of this marketing approach is how broadcasters change logo placements across different frames and regions, creating unique opportunities for sponsors. Let’s delve into this process, how it varies by country, and why it’s a game-changer for brands.
 
 The Dynamic Nature of F1 Brand Placements
@@ -70,7 +66,7 @@ Brand visibility at F1 circuits has become a fine art, one where broadcasters, s
         {
             'title': "England's women's football team secured a commanding 8-0 victory over China",
             'author': 'Khushi Deshmukh',
-            'image_url': 'https://images.unsplash.com/photo-1516475429286-465d815a0df7?q=80&w=2000&auto=format&fit=crop', # Women's Football Action
+            'image_filename': 'england_china_cover.png',
             'content': """<div class="blog-content-3d">
 <div class="intro-section">
 <p class="lead-paragraph">England's women's football team secured a commanding 8-0 victory over China in a highly anticipated international friendly at Wembley Stadium, marking yet another milestone in the growth of women's football. The match, played in front of a full-capacity crowd, highlighted not only the brilliance on the pitch but also the ever-expanding popularity of the women's game.</p>
@@ -102,7 +98,7 @@ Brand visibility at F1 circuits has become a fine art, one where broadcasters, s
         {
             'title': "Qatar 2025 Race Highlights",
             'author': 'Khushi Deshmukh',
-            'image_url': 'https://images.unsplash.com/photo-1541348263662-e068662d82af?q=80&w=2000&auto=format&fit=crop', # Night Race Track
+            'image_filename': 'qatar_highlights.png',
             'content': """<p>The 2025 Qatar Grand Prix dramatically reshaped the title race, transforming what seemed like a comfortable lead for Lando Norris into a tense three-way battle for the championship. Max Verstappen took victory, finishing ahead of Oscar Piastri and Carlos Sainz, while Norris could only manage fourth. With just 12 points separating Norris and Verstappen, and Piastri still in the hunt, the stage is set for an electrifying Abu Dhabi finale.</p>
 
 <h2>Turning Point</h2>
@@ -117,7 +113,7 @@ Brand visibility at F1 circuits has become a fine art, one where broadcasters, s
         {
             'title': "McLaren's Pitstop Gamble: A Costly Mistake at the 2025 Qatar Grand Prix",
             'author': 'Khushi Deshmukh',
-            'image_url': 'https://images.unsplash.com/photo-1592846266367-2747b065e9bc?q=80&w=2000&auto=format&fit=crop', # Pitstop Night Scene
+            'image_filename': 'mclaren_pitstop.png',
             'content': """<p>The 2025 Qatar Grand Prix was a pivotal moment in the Formula 1 season, not just for its on-track drama, but for a strategic blunder that could haunt McLaren for weeks to come. The team’s decision to keep Lando Norris and Oscar Piastri out during a crucial Safety Car period turned out to be a costly mistake, one that handed Max Verstappen an easy win and completely shifted the momentum in the championship fight.</p>
 
 <h2>A Tactical Howler</h2>
@@ -156,16 +152,19 @@ Brand visibility at F1 circuits has become a fine art, one where broadcasters, s
                 excerpt=strip_tags(blog_data['content'])[:200] + "..."
             )
 
-        # Handle Image
-        print(f"Downloading image for {blog.title}...")
-        img_file = download_image(blog_data['image_url'])
-        if img_file:
-            # Create a filename from the slug
-            filename = f"{slug}.jpg"
-            blog.image.save(filename, File(img_file), save=False)
-            print("Image downloaded successfully.")
+        # Handle Image from local file
+        image_path = assets_dir / blog_data['image_filename']
+        print(f"Looking for image at: {image_path}")
+        
+        if image_path.exists():
+            print(f"Found image for {blog.title}")
+            with open(image_path, 'rb') as f:
+                # Create a filename from the slug
+                filename = f"{slug}.png"
+                blog.image.save(filename, File(f), save=False)
+                print("Image saved to blog object.")
         else:
-            print("Failed to download image.")
+            print(f"Warning: Image file not found at {image_path}")
 
         blog.save()
         print(f"Successfully saved blog: {blog.title}\n")
