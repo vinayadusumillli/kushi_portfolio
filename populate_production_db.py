@@ -2,6 +2,7 @@ import os
 import django
 from django.core.files import File
 from django.utils.text import slugify
+from django.utils.html import strip_tags
 import requests
 from io import BytesIO
 
@@ -142,13 +143,17 @@ Brand visibility at F1 circuits has become a fine art, one where broadcasters, s
             blog = Blog.objects.get(slug=slug)
             blog.content = blog_data['content']
             blog.author = blog_data['author']
+            # Generate excerpt from content
+            blog.excerpt = strip_tags(blog_data['content'])[:200] + "..."
         else:
             print(f"Creating blog: {blog_data['title']}")
             blog = Blog(
                 title=blog_data['title'],
                 content=blog_data['content'],
                 slug=slug,
-                author=blog_data['author']
+                author=blog_data['author'],
+                # Generate excerpt from content
+                excerpt=strip_tags(blog_data['content'])[:200] + "..."
             )
 
         # Handle Image
