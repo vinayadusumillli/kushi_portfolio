@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="hero-image">
-            <img src="{% static 'images/uploaded_image_0_1764710806801.png' %}" alt="Khushi Deshmukh">
+            <img src="{% static 'images/khushi_hero.png' %}" alt="Khushi Deshmukh">
         </div>
     </div>
     
@@ -555,7 +555,7 @@
     {% if recent_blogs %}
         <div class="blog-grid">
             {% for blog in recent_blogs %}
-                <a href="{% url 'blog_detail' blog.slug %}" class="blog-card fade-in">
+                <a href="{% url 'blog_detail' blog.slug %}" class="blog-card">
                     <div class="blog-image-container">
                         {% if blog.image %}
                             <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="blog-image">
@@ -590,35 +590,61 @@
     </div>
     
     <div class="contact-container" style="max-width: 800px; margin: 0 auto;">
-        <div class="contact-form">
-            <form method="post" action="{% url 'contact' %}">
-                {% csrf_token %}
-                
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+        <div class="contact-info-display" style="display: flex; flex-direction: column; align-items: center; gap: 3rem; text-align: center;">
+            <div class="contact-item fade-in">
+                <div class="icon-wrapper" style="width: 80px; height: 80px; background: rgba(168, 85, 247, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 1px solid rgba(168, 85, 247, 0.3);">
+                    <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--accent-color);"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                <h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.5rem;">Phone</h3>
+                <a href="tel:+447879505485" style="font-size: 1.2rem; color: var(--gray-text); transition: color 0.3s;">+44 7879505485</a>
+            </div>
+            
+            <div class="contact-item fade-in" style="transition-delay: 0.2s;">
+                <div class="icon-wrapper" style="width: 80px; height: 80px; background: rgba(168, 85, 247, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 1px solid rgba(168, 85, 247, 0.3);">
+                    <i class="fas fa-envelope" style="font-size: 2rem; color: var(--accent-color);"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" required>
+                <h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.5rem;">Email</h3>
+                <a href="mailto:khushid02wrk@gmail.com" style="font-size: 1.2rem; color: var(--gray-text); transition: color 0.3s;">khushid02wrk@gmail.com</a>
+            </div>
+
+            <div class="contact-item fade-in" style="transition-delay: 0.4s; width: 100%;">
+                <h3 style="color: #fff; margin-bottom: 1.5rem; font-size: 1.5rem;">Connect With Me</h3>
+                <div class="social-links-large" style="display: flex; justify-content: center; gap: 2rem;">
+                    <a href="http://linkedin.com/in/khushi-deshmukh-946b991ba" target="_blank" class="social-icon-large" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/khushid32044444?s=11" target="_blank" class="social-icon-large" aria-label="X">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://www.facebook.com/share/1HzqnhTdpY/?mibextid=wwXIfr" target="_blank" class="social-icon-large" aria-label="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
                 </div>
-                
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-primary" style="width: 100%;">
-                    Send Message
-                </button>
-            </form>
+            </div>
         </div>
+
+        <style>
+            .social-icon-large {
+                width: 60px;
+                height: 60px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(168, 85, 247, 0.3);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                color: #fff;
+                transition: all 0.3s ease;
+            }
+            
+            .social-icon-large:hover {
+                background: var(--accent-color);
+                color: #000;
+                transform: translateY(-5px);
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+            }
+        </style>
     </div>
 </section>
 

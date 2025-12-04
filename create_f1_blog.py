@@ -48,7 +48,7 @@ With F1 races happening around the world, broadcasters are able to fine-tune the
 The consistency of branding throughout a race, in combination with the broadcast's ability to show logos in varying contexts, helps brands establish brand recall. Spectators, even those who might not be F1 enthusiasts, are constantly exposed to these logos, whether they are watching a close-up shot of a driver's helmet or a wide-angle shot of the entire track. This repeated exposure in different settings ensures that the brand remains top-of-mind long after the race ends.
 
 Brand visibility at F1 circuits has become a fine art, one where broadcasters, sponsors, and marketing experts work together to maximize brand presence. Through dynamic logo placements, geo-targeting for different countries, and an understanding of how viewers engage with the broadcast, F1 has created a unique platform where brands can truly shine. It's not just about slapping a logo on a car anymore. It's about integrating the brand seamlessly into the action. In an ever-competitive marketing world, this kind of visibility is invaluable, and Formula 1 is showing the way forward for strategic brand engagement in live sports broadcasting.''',
-    'author': 'Vinaya Dusumilli',
+    'author': 'Khushi Deshmukh',
 }
 
 # Copy the thumbnail image to media/blog_images/
