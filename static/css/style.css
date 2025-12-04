@@ -262,13 +262,13 @@ p {
 .hero-image img {
     width: 100%;
     height: auto;
-    filter: grayscale(100%) contrast(1.1) brightness(0.9);
+    /* filter: grayscale(100%) contrast(1.1) brightness(0.9); Removed for colorful images */
     transition: var(--transition);
     mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 
 .hero-image:hover img {
-    filter: grayscale(0%) contrast(1) brightness(1);
+    /* filter: grayscale(0%) contrast(1) brightness(1); */
     transform: scale(1.02) rotateY(-2deg);
 }
 
@@ -518,11 +518,11 @@ section {
     align-items: center;
     justify-content: center;
     transition: var(--transition);
-    filter: grayscale(100%);
+    /* filter: grayscale(100%); Removed for colorful images */
 }
 
 .brand-card:hover > div {
-    filter: grayscale(0%);
+    /* filter: grayscale(0%); */
 }
 
 /* Blog Grid */
@@ -576,12 +576,12 @@ section {
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
-    filter: grayscale(100%);
+    /* filter: grayscale(100%); Removed for colorful images */
 }
 
 .blog-card:hover .blog-image {
     transform: scale(1.1);
-    filter: grayscale(0%);
+    /* filter: grayscale(0%); */
 }
 
 .blog-content {
