@@ -27,7 +27,8 @@ def populate_db():
         {
             'title': 'Brand Visibility at F1 Circuit Tracks: A Deep Dive into the Art of Strategic Placement',
             'author': 'Khushi Deshmukh',
-            'image_url': 'https://images.unsplash.com/photo-1535132011086-b8818f016104?q=80&w=2070&auto=format&fit=crop',
+            # Updated to a confirmed F1 car image (Red Bull)
+            'image_url': 'https://images.unsplash.com/photo-1590135086583-82c815777891?q=80&w=2000&auto=format&fit=crop',
             'content': """Formula 1 (F1) racing is a spectacle of speed, skill, and strategy, but beneath the tire-burning action lies a powerful marketing engine that brands harness to reach millions of viewers across the globe. The branding at F1 circuit tracks is not just about slapping logos on barriers and cars; it's a meticulously crafted strategy to maximize brand visibility. One of the most dynamic elements of this marketing approach is how broadcasters change logo placements across different frames and regions, creating unique opportunities for sponsors. Let’s delve into this process, how it varies by country, and why it’s a game-changer for brands.
 
 The Dynamic Nature of F1 Brand Placements
