@@ -1,14 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from .models import Blog, Contact
+from .models import Blog, Contact, Service
 
 # Create your views here.
 
 def home(request):
     """Home page view"""
     recent_blogs = Blog.objects.filter(published=True)[:3]
+    services = Service.objects.filter(is_active=True).order_by('order')
     context = {
         'recent_blogs': recent_blogs,
+        'services': services,
     }
     return render(request, 'main/home.html', context)
 

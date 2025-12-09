@@ -34,3 +34,18 @@ class Contact(models.Model):
         
     def __str__(self):
         return f"{self.name} - {self.subject}"
+
+
+class Service(models.Model):
+    name = models.CharField(max_length=100)
+    icon = models.CharField(max_length=50, help_text="Font Awesome icon class (e.g., 'fa-solid fa-comments')")
+    description = models.TextField(blank=True, help_text="Optional detailed description")
+    order = models.IntegerField(default=0, help_text="Display order (lower numbers appear first)")
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    
+    class Meta:
+        ordering = ['order', 'name']
+        
+    def __str__(self):
+        return self.name

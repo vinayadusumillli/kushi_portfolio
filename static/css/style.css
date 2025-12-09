@@ -631,6 +631,116 @@ section {
     color: var(--accent-color);
 }
 
+.read-more:hover {
+    color: var(--accent-color);
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background: var(--card-bg);
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(168, 85, 247, 0.1);
+    transition: var(--transition);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(124, 58, 237, 0.1));
+    border: 2px solid rgba(168, 85, 247, 0.2);
+    border-radius: 50%;
+    transition: var(--transition);
+    position: relative;
+}
+
+.service-icon-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-icon-wrapper {
+    transform: scale(1.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.service-card:hover .service-icon-wrapper::after {
+    opacity: 1;
+    animation: pulse-glow 2s infinite;
+}
+
+.service-icon-wrapper i {
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.service-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-name {
+    color: var(--accent-color);
+}
+
+.service-description {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    line-height: 1.6;
+    margin: 0;
+}
+
 /* Blog Detail */
 .blog-article {
     padding: 10rem 2rem 6rem;
