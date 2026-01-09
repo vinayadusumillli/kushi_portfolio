@@ -3,6 +3,77 @@
 
 {% block title %}Khushi Deshmukh - Communications Professional{% endblock %}
 
+{% block extra_css %}
+<style>
+    /* Lightbox Styles */
+    #image-lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    #image-lightbox.active {
+        display: flex;
+        opacity: 1;
+    }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    #image-lightbox.active .lightbox-content {
+        transform: scale(1);
+    }
+
+    .lightbox-content img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 8px;
+        box-shadow: 0 0 50px rgba(168, 85, 247, 0.3);
+        display: block;
+        cursor: default;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: #fff;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .lightbox-close:hover {
+        color: var(--accent-color);
+    }
+
+    /* Pointer cursor for clickable images */
+    .recommendation-card img,
+    #journey .timeline-content img {
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
 <section class="hero">
@@ -101,7 +172,7 @@
                         </ul>
 
 
-                        <h4 style="margin-top: 1.5rem;">Features</h4>
+
                         <div
                             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
                             <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
@@ -150,13 +221,13 @@
                             </li>
                         </ul>
 
-                        <h4 style="margin-top: 1.5rem;">Customer Appreciation</h4>
+
                         <div
                             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
                             <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
                                 onmouseover="this.style.transform='translateY(-5px)'"
                                 onmouseout="this.style.transform='translateY(0)'">
-                                <img src="{% static 'images/decathlon_feedback_1.jpg' %}" alt="Customer Feedback 1"
+                                <img src="{% static 'images/decathlon_feedback_new.png' %}" alt="Customer Feedback 1"
                                     style="width: 100%; height: auto; display: block;">
                             </div>
                             <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
@@ -200,7 +271,7 @@
                             <li>● Reported all team expenses, merchandise, inventory and marketing impact.</li>
 
                         </ul>
-                        <h4 style="margin-top: 1.5rem;">Memories</h4>
+
                         <div
                             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
                             <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
@@ -249,7 +320,7 @@
                                 the increased participation.</li>
                         </ul>
 
-                        <h4 style="margin-top: 1.5rem;">Memories</h4>
+
                         <div
                             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
                             <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
@@ -261,7 +332,7 @@
                             <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
                                 onmouseover="this.style.transform='translateY(-5px)'"
                                 onmouseout="this.style.transform='translateY(0)'">
-                                <img src="{% static 'images/krishang_sports_event_2.jpg' %}"
+                                <img src="{% static 'images/krishang_sports_highlight_new.png' %}"
                                     alt="Krishang Sports Event 2" style="width: 100%; height: auto; display: block;">
                             </div>
                         </div>
@@ -277,12 +348,33 @@
         <!-- 2023 -->
         <div class="timeline-item fade-in">
             <div class="timeline-year">2023</div>
-            <div class="timeline-content">
-                <h3>Graduation</h3>
-                <ul style="margin: 0; padding-left: 1.2rem;">
-                    <li>Graduated as a bronze-medalist in Sport Management with first class honours from International
-                        Institute of Sport and Management</li>
-                </ul>
+            <div class="timeline-content expandable-card">
+                <div class="card-main-content">
+                    <h3>Graduation</h3>
+                    <ul style="margin: 0; padding-left: 1.2rem;">
+                        <li>Graduated as a bronze-medalist in Sport Management with first class honours from
+                            International
+                            Institute of Sport and Management</li>
+                    </ul>
+                    <button class="expand-btn" onclick="toggleDetails(this)">
+                        <span>View Moment</span>
+                        <span class="chevron">▼</span>
+                    </button>
+                </div>
+                <div class="extension-tile">
+                    <div class="extension-content">
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                            <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <img src="{% static 'images/graduation_photo_new.jpg' %}" alt="Graduation Moment"
+                                    style="width: 100%; height: auto; display: block;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -309,6 +401,24 @@
                             <li>● Managed digital promotions of MotoGP teams LCR Honda and MLAV Racing.</li>
                             <li>● Assisted in onboarding of new partner Moto3 Snipers Teams.</li>
                         </ul>
+                    </div>
+                    <div class="extension-content">
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                            <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <img src="{% static 'images/bsp_highlight_1.png' %}" alt="BSP Highlight 1"
+                                    style="width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; display: block;">
+                            </div>
+                            <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <img src="{% static 'images/bsp_highlight_2.png' %}" alt="BSP Highlight 2"
+                                    style="width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; display: block;">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -370,6 +480,18 @@
                             <li>● Promoted the mentorship programme through engaging posts on LinkedIn to attract global
                                 applications.</li>
                         </ul>
+
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                            <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <img src="{% static 'images/mentorship_champs_highlight.png' %}"
+                                    alt="Mentorship of Champs Highlight"
+                                    style="width: 100%; height: auto; display: block;">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -378,19 +500,166 @@
         <!-- 2025 -->
         <div class="timeline-item fade-in">
             <div class="timeline-year">2025</div>
+            <div class="timeline-content expandable-card">
+                <div class="card-main-content">
+                    <h3>Masters Degree</h3>
+                    <ul style="margin: 0; padding-left: 1.2rem;">
+                        <li>Masters in Sport Business and Innovation from Loughborough University London, furthering
+                            expertise in sports industry leadership</li>
+                    </ul>
+                    <button class="expand-btn" onclick="toggleDetails(this)">
+                        <span>View Moment</span>
+                        <span class="chevron">▼</span>
+                    </button>
+                </div>
+                <div class="extension-tile">
+                    <div class="extension-content">
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                            <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <img src="{% static 'images/masters_graduation_highlight.png' %}"
+                                    alt="Masters Graduation Moment" style="width: 100%; height: auto; display: block;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Volunteering Section -->
+<section id="volunteering">
+    <div class="section-title">
+        <h2>Volunteering</h2>
+    </div>
+
+    <div class="timeline">
+        <!-- RAISE -->
+        <div class="timeline-item fade-in">
+            <div class="timeline-year">2025</div>
             <div class="timeline-content">
-                <h3>Masters Degree</h3>
-                <ul style="margin: 0; padding-left: 1.2rem;">
-                    <li>Masters in Sport Business and Innovation from Loughborough University London, furthering
-                        expertise in sports industry leadership</li>
-                </ul>
+                <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                    <div
+                        style="flex-shrink: 0; width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <img src="{% static 'images/vol_raise.png' %}" alt="RAISE Logo"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.25rem;">RAISE - The Global Women's Sport Conference</h3>
+                        <div style="color: var(--accent-color); font-weight: 500; margin-bottom: 0.5rem;">Event Staff
+                        </div>
+                        <ul style="margin: 0; padding-left: 1.2rem;">
+                            <li>Facilitated on-ground operations and attendee management to ensure a seamless experience
+                                for all conference participants.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formula E -->
+        <div class="timeline-item fade-in">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-content">
+                <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                    <div
+                        style="flex-shrink: 0; width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <img src="{% static 'images/vol_formula_e_new.png' %}" alt="Formula E Logo"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.25rem;">Formula E</h3>
+                        <div style="color: var(--accent-color); font-weight: 500; margin-bottom: 0.5rem;">Volunteer
+                            Supervisor
+                        </div>
+                        <ul style="margin: 0; padding-left: 1.2rem;">
+                            <li>Supervised crowd control for 1000+ spectators and optimized flow to boost sponsor sales
+                                while ensuring safety.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Para Football -->
+        <div class="timeline-item fade-in">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-content">
+                <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                    <div
+                        style="flex-shrink: 0; width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <img src="{% static 'images/vol_para_football.png' %}" alt="Para Football Logo"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.25rem;">Para Football</h3>
+                        <div style="color: var(--accent-color); font-weight: 500; margin-bottom: 0.5rem;">Content Writer
+                        </div>
+                        <ul style="margin: 0; padding-left: 1.2rem;">
+                            <li>Created engaging content to promote Para Football's mission and initiatives.</li>
+                            <li>Developed articles and social media copy to raise awareness about inclusive football.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KSF Thunder Strikers -->
+        <div class="timeline-item fade-in">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-content">
+                <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                    <div
+                        style="flex-shrink: 0; width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <img src="{% static 'images/vol_ksf_new.png' %}" alt="KSF Thunder Strikers Logo"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.25rem;">KSF Thunder Strikers</h3>
+                        <div style="color: var(--accent-color); font-weight: 500; margin-bottom: 0.5rem;">Team Manager
+                        </div>
+                        <ul style="margin: 0; padding-left: 1.2rem;">
+                            <li>Managed team operations, strategy, and athlete relations while overseeing digital
+                                marketing and commercial responsibilities.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Asian Football Confederation -->
+        <div class="timeline-item fade-in">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-content">
+                <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                    <div
+                        style="flex-shrink: 0; width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                        <img src="{% static 'images/vol_afc_new.png' %}" alt="AFC Logo"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.25rem;">The Asian Football Confederation</h3>
+                        <div style="color: var(--accent-color); font-weight: 500; margin-bottom: 0.5rem;">Competition
+                            Coordinator
+                        </div>
+                        <ul style="margin: 0; padding-left: 1.2rem;">
+                            <li>Coordinated logistics and translation for officials while assisting anti-doping officers
+                                and medical teams with safety procedures.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Services Section -->
-<section id="services" style="background: var(--secondary-bg);">
+<section id="services">
     <div class="section-title">
         <h2>Services</h2>
         <p>What I Offer</p>
@@ -414,7 +683,7 @@
 </section>
 
 <!-- Brands Section -->
-<section id="brands" style="background: var(--secondary-bg);">
+<section id="brands">
     <div class="section-title">
         <h2>Brands</h2>
         <p>Brands I have worked with</p>
@@ -496,6 +765,183 @@
                     style="max-width: 90%; max-height: 90%; object-fit: contain; transform: translateZ(20px);">
             </div>
         </div>
+    </div>
+</section>
+
+<!-- Recommendations Section -->
+<section id="recommendations">
+    <div class="section-title">
+        <h2>Recommendations</h2>
+    </div>
+
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+    <div class="recommendations-grid"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 0 1rem;">
+
+        <!-- Bike Sport Promotions -->
+        <div class="recommendation-card fade-in"
+            style="background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(168, 85, 247, 0.1); border-radius: 12px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+            <div style="flex-grow: 1; overflow: hidden; background: rgba(0,0,0,0.3); padding: 10px;">
+                <img src="{% static 'images/rec_bsp.png' %}"
+                    alt="Internship Completion Statement from Bike Sport Promotions for Khushi Deshmukh"
+                    style="width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            <div class="sr-only">
+                Statement of Completion. Khushi Deshmukh has successfully completed her internship with Bike Sport
+                Promotions (BSP)... played a pivotal role in managing and enhancing the organization's communications
+                strategy... overseeing internal and external communications, contributing to social media campaigns.
+            </div>
+            <div style="padding: 1.5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="color: #fff; margin: 0; font-size: 1.1rem;">Bike Sport Promotions</h3>
+            </div>
+        </div>
+
+        <!-- Vidarbha Pickleball Open -->
+        <div class="recommendation-card fade-in"
+            style="background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(168, 85, 247, 0.1); border-radius: 12px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+            <div style="flex-grow: 1; overflow: hidden; background: rgba(0,0,0,0.3); padding: 10px;">
+                <img src="{% static 'images/rec_vidarbha.png' %}"
+                    alt="Certificate of Appreciation from Vidarbha Pickleball Open 2024 for Khushi Deshmukh"
+                    style="width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            <div class="sr-only">
+                Certificate of Appreciation. Khushi Deshmukh. Thank you so much for being a part of 'Vidarbha Pickleball
+                Open 2024' Tournament... Your invaluable contribution has helped us make the event a huge success.
+            </div>
+            <div style="padding: 1.5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="color: #fff; margin: 0; font-size: 1.1rem;">Vidarbha Pickleball Open 2024</h3>
+            </div>
+        </div>
+
+        <!-- Greenko Hyderabad E-Prix -->
+        <div class="recommendation-card fade-in"
+            style="background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(168, 85, 247, 0.1); border-radius: 12px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+            <div style="flex-grow: 1; overflow: hidden; background: rgba(0,0,0,0.3); padding: 10px;">
+                <img src="{% static 'images/rec_greenko.png' %}"
+                    alt="Certificate of Appreciation from Greenko Hyderabad E-Prix 2023 for Khushi Deshmukh"
+                    style="width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            <div class="sr-only">
+                Certificate of Appreciation presented to Khushi Deshmukh for your valuable support and dedication during
+                the 2023 Greenko Hyderabad E-Prix. Thank you for your commitment and passion towards delivering India's
+                first ever ABB FIA Formula E World Championship.
+            </div>
+            <div style="padding: 1.5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="color: #fff; margin: 0; font-size: 1.1rem;">Greenko Hyderabad E-Prix 2023</h3>
+            </div>
+        </div>
+
+        <!-- Krishang Sports -->
+        <div class="recommendation-card fade-in"
+            style="background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(168, 85, 247, 0.1); border-radius: 12px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+            <div style="flex-grow: 1; overflow: hidden; background: rgba(0,0,0,0.3); padding: 10px;">
+                <img src="{% static 'images/rec_krishang_sports.png' %}"
+                    alt="Recommendation Letter from Krishang Sports for Khushi Deshmukh as Team Manager"
+                    style="width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            <div class="sr-only">
+                This is to formally certify that Khushi Deshmukh has served as a freelance Team Manager with our team,
+                KSF Thunder Strikers... She was responsible for planning, directing, and guaranteeing that the league's
+                numerous initiatives were carried out... Her positive mindset and creative solutions made a big
+                difference.
+            </div>
+            <div style="padding: 1.5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="color: #fff; margin: 0; font-size: 1.1rem;">Krishang Sports</h3>
+            </div>
+        </div>
+
+        <!-- Gujarat Titans -->
+        <div class="recommendation-card fade-in"
+            style="background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(168, 85, 247, 0.1); border-radius: 12px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+            <div style="flex-grow: 1; overflow: hidden; background: rgba(0,0,0,0.3); padding: 10px;">
+                <img src="{% static 'images/rec_gujarat_titans_new.png' %}"
+                    alt="Certificate of Gratitude from Gujarat Titans for Khushi Deshmukh"
+                    style="width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            <div class="sr-only">
+                Message of Gratitude. We thank you... Khushi Deshmukh. For being a memorable part of our long
+                #SeasonOfFirsts, and making us feel at home, away from home! You're a part of the Titans' family! Signed
+                Hardik Pandya.
+            </div>
+            <div style="padding: 1.5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="color: #fff; margin: 0; font-size: 1.1rem;">Gujarat Titans</h3>
+            </div>
+        </div>
+
+        <!-- AFC Women's Asian Cup -->
+        <div class="recommendation-card fade-in"
+            style="background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(168, 85, 247, 0.1); border-radius: 12px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+            <div style="flex-grow: 1; overflow: hidden; background: rgba(0,0,0,0.3); padding: 10px;">
+                <img src="{% static 'images/rec_afc.png' %}"
+                    alt="Recommendation Letter from Local Organising Committee, AFC Women's Asian Cup India 2022"
+                    style="width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            <div class="sr-only">
+                Volunteers are the beating heart of any tournament... We are grateful to have interacted with all of
+                you... recommend you for any further roles as you are talented, intuitive and hardworking. We also look
+                forward to your feedbacks...
+            </div>
+            <div style="padding: 1.5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="color: #fff; margin: 0; font-size: 1.1rem;">AFC Women's Asian Cup India 2022</h3>
+            </div>
+        </div>
+
+        <!-- Decathlon -->
+        <div class="recommendation-card fade-in"
+            style="background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(168, 85, 247, 0.1); border-radius: 12px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+            <div style="flex-grow: 1; overflow: hidden; background: rgba(0,0,0,0.3); padding: 10px;">
+                <img src="{% static 'images/rec_decathlon.png' %}"
+                    alt="Certificate from Decathlon: Internship Completion for Khushi Amar Deshmukh in Retail"
+                    style="width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            <div class="sr-only">
+                To whomsoever it may concern. This is to certify that Miss. Khushi Amar Deshmukh has completed
+                internship at Decathlon Sports India Pvt Ltd... under the guidance of Steffi Subedi. Found she was
+                punctual, hardworking and inquisitive.
+            </div>
+            <div style="padding: 1.5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="color: #fff; margin: 0; font-size: 1.1rem;">Decathlon Sports India</h3>
+            </div>
+        </div>
+
+        <!-- Female Cricket Networks -->
+        <div class="recommendation-card fade-in"
+            style="background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(168, 85, 247, 0.1); border-radius: 12px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+            <div style="flex-grow: 1; overflow: hidden; background: rgba(0,0,0,0.3); padding: 10px;">
+                <img src="{% static 'images/rec_female_cricket.png' %}"
+                    alt="Certificate from Female Cricket Networks: Internship Completion Certificate for Khushi Deshmukh as Content Writer"
+                    style="width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+            <div class="sr-only">
+                Subject: Internship Completion Certificate. This is to certify that Ms. Khushi Deshmukh completed her
+                internship as a "Content Writer"... throughout her tenure, Khushi was quick to learn... able to produce
+                a very high volume of work while maintaining the standards for quality.
+            </div>
+            <div style="padding: 1.5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="color: #fff; margin: 0; font-size: 1.1rem;">Female Cricket Networks</h3>
+            </div>
+        </div>
+
     </div>
 </section>
 
@@ -736,6 +1182,66 @@
 </script>
 
 <!-- Recent Blogs Section -->
+
+<!-- Gallery Section -->
+<section id="gallery">
+    <div class="section-title">
+        <h2>Gallery</h2>
+        <p>Moments captured in time</p>
+    </div>
+
+    <div class="gallery-grid" style="column-count: 3; column-gap: 1rem; padding: 0 1rem;">
+
+        <!-- Formula E Hyderabad -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_formula_e_hyderabad.jpg' %}" alt="Hyderabad Electric Event Group Photo"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- British GT -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_british_gt.jpg' %}" alt="British GT Championship Team"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- RAISE Desk -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_raise_desk.jpg' %}" alt="RAISE Conference Registration Desk"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="{% url 'gallery' %}" class="btn btn-secondary">View All Photos</a>
+    </div>
+</section>
+
+<style>
+    @media (max-width: 768px) {
+        .gallery-grid {
+            column-count: 2 !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .gallery-grid {
+            column-count: 1 !important;
+        }
+    }
+
+    .gallery-item img:hover {
+        transform: scale(1.05);
+    }
+</style>
+</section>
+
 <section id="blogs">
     <div class="section-title">
         <h2>Latest Insights</h2>
@@ -775,7 +1281,7 @@
 </section>
 
 <!-- Contact Section -->
-<section id="contact" style="background: var(--secondary-bg);">
+<section id="contact">
     <div class="section-title">
         <h2>Get In Touch</h2>
         <p>Let's collaborate</p>
@@ -785,16 +1291,6 @@
         <div class="contact-info-display"
             style="display: flex; flex-direction: column; align-items: center; gap: 3rem; text-align: center;">
             <div class="contact-item fade-in">
-                <div class="icon-wrapper"
-                    style="width: 80px; height: 80px; background: rgba(168, 85, 247, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 1px solid rgba(168, 85, 247, 0.3);">
-                    <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--accent-color);"></i>
-                </div>
-                <h3 style="color: #fff; margin-bottom: 0.5rem; font-size: 1.5rem;">Phone</h3>
-                <a href="tel:+447879505485"
-                    style="font-size: 1.2rem; color: var(--gray-text); transition: color 0.3s;">+44 7879505485</a>
-            </div>
-
-            <div class="contact-item fade-in" style="transition-delay: 0.2s;">
                 <div class="icon-wrapper"
                     style="width: 80px; height: 80px; background: rgba(168, 85, 247, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 1px solid rgba(168, 85, 247, 0.3);">
                     <i class="fas fa-envelope" style="font-size: 2rem; color: var(--accent-color);"></i>
@@ -846,6 +1342,13 @@
             }
         </style>
     </div>
+    <!-- Image Lightbox -->
+    <div id="image-lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-img" src="" alt="Enlarged Recommendation">
+        </div>
+    </div>
 </section>
 
 <script>
@@ -869,6 +1372,50 @@
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
+    });
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const lightbox = document.getElementById('image-lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.lightbox-close');
+        const recImages = document.querySelectorAll('.recommendation-card img, #journey .timeline-content img');
+
+        recImages.forEach(img => {
+            img.addEventListener('click', function (e) {
+                e.stopPropagation();
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        };
+
+        lightbox.addEventListener('click', closeLightbox);
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeLightbox();
+        });
+
+        // Prevent closing when clicking the image itself
+        lightboxImg.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
     });
 </script>
 {% endblock %}

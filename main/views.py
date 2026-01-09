@@ -56,3 +56,8 @@ def contact(request):
     return render(request, 'main/home.html')
 
 
+def gallery(request):
+    """Gallery page view"""
+    return render(request, 'main/gallery.html')
+
+

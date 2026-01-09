@@ -1,0 +1,232 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Gallery - Khushi Deshmukh{% endblock %}
+
+{% block content %}
+<section id="gallery-page" style="padding-top: 120px; background: var(--secondary-bg); min-height: 100vh;">
+    <div class="section-title">
+        <h2>Gallery</h2>
+        <p>Moments captured in time</p>
+    </div>
+
+    <div class="gallery-grid" style="column-count: 3; column-gap: 1rem; padding: 0 1rem;">
+
+        <!-- Titans Banner -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_titans_banner.jpg' %}" alt="Team preparing Gujarat Titans banner"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Formula E Group -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_formula_e_group.jpg' %}" alt="Formula E Volunteer Team at Track"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Titans Jersey -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_titans_jersey.jpg' %}" alt="Gujarat Titans Jersey Presentation"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Hyderabad Electric -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_formula_e_hyderabad.jpg' %}" alt="Hyderabad Electric Event Group Photo"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- AFC Field Group -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_afc_group.jpg' %}" alt="AFC Women's Asian Cup Team on Field"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- RAISE Desk -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_raise_desk.jpg' %}" alt="RAISE Conference Registration Desk"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- RAISE Stage Group -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_raise_stage_group.jpg' %}" alt="RAISE Conference Speakers and Team"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- AFC Individual -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_afc_individual.jpg' %}" alt="Volunteering at AFC Women's Asian Cup"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- RAISE Audience -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_raise_audience.jpg' %}" alt="RAISE Conference Audience View"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Arsenal Tag -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_arsenal_tag.jpg' %}" alt="Arsenal Name Tag"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Krishang Group -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_krishang_group.jpg' %}" alt="Krishang Sports Team Group"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- PL Ball -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_pl_ball.jpg' %}" alt="Premier League Football Presentation"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Poster -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_football_manager_poster.jpg' %}" alt="Women's Football Research Poster"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Court Group -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_court_group.jpg' %}" alt="Team on Sports Court"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- British GT -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_british_gt.jpg' %}" alt="British GT Championship Team"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Degree Ceremony -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_degree_ceremony.jpg' %}" alt="Degree Distribution Ceremony"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Personal Best Award -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_personal_best_award.jpg' %}" alt="Personal Best London Award 2025"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Silverstone Abbi -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_silverstone_abbi.jpg' %}"
+                alt="With F1 Academy Driver Abbi Pulling at Silverstone"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Water Polo Team -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_water_polo_team.jpg' %}" alt="Water Polo Team in Pool"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- SBIS Meet -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_sbis_meet.jpg' %}" alt="SBIS Annual Athletic Meet 2022"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+        <!-- Swimming Butterfly -->
+        <div class="gallery-item fade-in"
+            style="break-inside: avoid; margin-bottom: 1rem; border-radius: 12px; overflow: hidden;">
+            <img src="{% static 'images/gallery_swimming_butterfly.jpg' %}" alt="Swimming Butterfly Stroke Competition"
+                style="width: 100%; display: block; transition: transform 0.5s ease;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem; padding-bottom: 3rem;">
+        <a href="{% url 'home' %}#gallery" class="btn btn-secondary">Back to Home</a>
+    </div>
+
+    <style>
+        @media (max-width: 768px) {
+            .gallery-grid {
+                column-count: 2 !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                column-count: 1 !important;
+            }
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</section>
+
+<script>
+    // Fade in animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+</script>
+{% endblock %}
