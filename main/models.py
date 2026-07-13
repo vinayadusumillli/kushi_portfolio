@@ -9,6 +9,8 @@ class Blog(models.Model):
     content = models.TextField()
     excerpt = models.TextField(max_length=300, blank=True)
     image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
+    body_image = models.ImageField(upload_to='blog_body_images/', blank=True, null=True, help_text="Image to be displayed within the blog body")
+    body_image_2 = models.ImageField(upload_to='blog_body_images/', blank=True, null=True, help_text="Second image to be displayed within the blog body")
     author = models.CharField(max_length=100, default='Khushi Deshmukh')
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
